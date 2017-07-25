@@ -1,0 +1,13 @@
+[virtualmin]
+name=RHEL/CentOS $releasever - $basearch - Virtualmin
+baseurl=http://software.virtualmin.com/vm/6/gpl/centos/$releasever/$basearch/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-6
+gpgcheck=1
+
+[virtualmin-universal]
+name=Virtualmin Distribution Neutral Packages
+baseurl=http://software.virtualmin.com/vm/6/gpl/universal/
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-6
+gpgcheck=1

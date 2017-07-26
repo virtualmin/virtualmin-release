@@ -1,16 +1,15 @@
-%define osname centos
 %define arch noarch 
 
 Summary: Virtualmin release file and package configuration for Virtualmin GPL
 Name: virtualmin-release
 Version: 6.0
-Release: 3.%{osname}.gpl
+Release: 3.gpl
 License: Copyright 2005-2017 Virtualmin, Inc.
 Group: System Environment/Base
 Source0: RPM-GPG-KEY-webmin
 Source1: RPM-GPG-KEY-virtualmin
 Source2: RPM-GPG-KEY-virtualmin-6
-Source10: virtualmin.repo-%{osname}
+Source10: virtualmin.repo-gpl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -75,6 +74,8 @@ exit 0
 
 
 %changelog
+* Wed Jul 26 2017 Joe Cooper <joe@virtualmin.com>
+- Simplify by removing OS name
 * Wed Apr 19 2017 Joe Cooper <joe@virtualmin.com>
 - New GPG key for Virtualmin 6 packages and new installer
 * Sat Jul 27 2013 Joe Cooper <joe@virtualmin.com>

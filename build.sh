@@ -17,7 +17,8 @@ echo "Copying $gplrel to GPL repositories..."
 cp $gplrel $HOME/result/vm/6/gpl/centos/6/i386
 cp $gplrel $HOME/result/vm/6/gpl/centos/6/x86_64
 cp $gplrel $HOME/result/vm/6/gpl/centos/7/x86_64
-for i in "centos/6/i386 centos/6/x86_64 centos/7/x86_64"; do
+for i in centos/6/i386 centos/6/x86_64 centos/7/x86_64; do
+	echo "Adding link to $HOME/result/vm/6/gpl/$i..."
 	cd $HOME/result/vm/6/gpl/$i
 	rm virtualmin-release-latest.noarch.rpm
 	ln -s $(basename $gplrel) virtualmin-release-latest.noarch.rpm
@@ -30,10 +31,11 @@ echo "Copying $prorel to Pro repositories..."
 cp $prorel $HOME/result/vm/6/centos/6/i386
 cp $prorel $HOME/result/vm/6/centos/6/x86_64
 cp $prorel $HOME/result/vm/6/centos/7/x86_64
-for i in "centos/6/i386 centos/6/x86_64 centos/7/x86_64"; do
+for i in centos/6/i386 centos/6/x86_64 centos/7/x86_64; do
+	echo "Adding link to $HOME/result/vm/6/$i..."
         cd $HOME/result/vm/6/$i
         rm virtualmin-release-latest.noarch.rpm
         ln -s $(basename $prorel) virtualmin-release-latest.noarch.rpm
 done
 cd $cwd
-rm $prorel
+#rm $prorel

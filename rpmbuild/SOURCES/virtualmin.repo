@@ -6,7 +6,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 gpgcheck=1
 
 [virtualmin-universal]
-name=Virtualmin Distribution Neutral Packages
+name=Virtualmin Architecture Neutral Packages
 baseurl=https://SERIALNUMBER:LICENSEKEY@software.virtualmin.com/vm/7/universal/
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7

@@ -1,12 +1,12 @@
 [virtualmin]
-name=Binary RPM - $basearch - Virtualmin
+name=Virtualmin 7 - $basearch
 baseurl=https://software.virtualmin.com/vm/7/rpm/$basearch/
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 gpgcheck=1
 
 [virtualmin-universal]
-name=Virtualmin Architecture Neutral Packages
+name=Virtualmin 7 - Universal 
 baseurl=https://SERIALNUMBER:LICENSEKEY@software.virtualmin.com/vm/7/universal/
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7

@@ -6,9 +6,9 @@ rpmbuild --define "_topdir $(pwd)/rpmbuild" -bb rpmbuild/SPECS/virtualmin-gpl-re
 rpmsign -D '_gpg_name Virtualmin, Inc. (Package signing key for Virtualmin 7) <security@virtualmin.com>' --addsign rpmbuild/RPMS/noarch/*.rpm
 
 cwd=$(pwd)
+echo "Copying to repository..."
 # GPL
 gplrel=$(find . -name 'virtualmin-gpl-release*.noarch.rpm')
-echo "Copying to repository..."
 cp "$gplrel" "$HOME/result/vm/7/rpm/"
 echo "Adding links..."
 cd "$HOME/result/vm/7/rpm/" || exit 1

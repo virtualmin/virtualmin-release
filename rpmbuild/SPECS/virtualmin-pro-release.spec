@@ -8,7 +8,7 @@ License: Copyright 2005-2022 Virtualmin, Inc.
 Group: System Environment/Base
 Source0: RPM-GPG-KEY-webmin
 Source1: RPM-GPG-KEY-virtualmin-7
-Source10: virtualmin.repo-gpl
+Source10: virtualmin.repo
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 

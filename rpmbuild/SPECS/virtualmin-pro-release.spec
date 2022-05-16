@@ -1,14 +1,13 @@
 %define arch noarch 
 
-Summary: Virtualmin release file and package configuration for Virtualmin Pro
-Name: virtualmin-release
-Version: 6.0
-Release: 3
-License: Copyright 2005-2017 Virtualmin, Inc.
+Summary: Virtualmin release file and package configuration for Virtualmin GPL
+Name: virtualmin-pro-release
+Version: 7.0
+Release: 1
+License: Copyright 2005-2022 Virtualmin, Inc.
 Group: System Environment/Base
 Source0: RPM-GPG-KEY-webmin
-Source1: RPM-GPG-KEY-virtualmin
-Source2: RPM-GPG-KEY-virtualmin-6
+Source1: RPM-GPG-KEY-virtualmin-7
 Source10: virtualmin.repo
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -33,9 +32,7 @@ upgrades of Webmin from webmin.com will have valid keys.
 %{__install} -D -p -m 0644 %{SOURCE0} \
     %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
 %{__install} -D -p -m 0644 %{SOURCE1} \
-    %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin
-%{__install} -D -p -m 0644 %{SOURCE2} \
-    %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-6
+    %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 # Install yum repo file
 %{__install} -D -p -m 0644 %{SOURCE10} \
     %{buildroot}%{_sysconfdir}/yum.repos.d/virtualmin.repo
@@ -51,20 +48,15 @@ if [ "$1" -eq 1 ]; then
   # Import Jamie's gpg key if needed
   rpm -q gpg-pubkey-11f63c51-3c7dc11d >/dev/null 2>&1 || \
     rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
-  # Import the Virtualmin official gpg key if needed
-  rpm -q gpg-pubkey-a0bdbcf9-42d1d837 >/dev/null 2>&1 || \
-    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin
   # Import the Virtualmin 6.0 official gpg key if needed
   rpm -q gpg-pubkey-9d3152d3-895093ac >/dev/null 2>&1 || \
-    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-6
-
+    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
   # Get the serial/key from the /etc/virtualmin-license file
   . /etc/virtualmin-license
 
   # Fix up the paths in the repo to include serial and key
   sed -i "s/SERIALNUMBER/$SerialNumber/" %{_sysconfdir}/yum.repos.d/virtualmin.repo
   sed -i "s/LICENSEKEY/$LicenseKey/" %{_sysconfdir}/yum.repos.d/virtualmin.repo
-
 fi
 
 # We don't want a possible error to leave the previous package installed
@@ -74,14 +66,15 @@ exit 0
 %files
 %defattr(-, root, root, 0755)
 %pubkey RPM-GPG-KEY-webmin
-%pubkey RPM-GPG-KEY-virtualmin
+%pubkey RPM-GPG-KEY-virtualmin-7
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-6
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 %attr(6750,root,root) %config(noreplace) %{_sysconfdir}/yum.repos.d/virtualmin.repo
 
 
 %changelog
+* Sun May 15 2022 Joe Cooper <joe@virtualmin.com>
+- Simplify more by removing everything except $basearch
 * Wed Jul 26 2017 Joe Cooper <joe@virtualmin.com>
 - Simplify by removing OS name
 * Wed Apr 19 2017 Joe Cooper <joe@virtualmin.com>

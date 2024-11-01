@@ -63,10 +63,12 @@ exit 0
 %pubkey RPM-GPG-KEY-virtualmin-7
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
-%attr(6750,root,root) %config(noreplace) %{_sysconfdir}/yum.repos.d/virtualmin.repo
+%attr(0640,root,root) %config(noreplace) %{_sysconfdir}/yum.repos.d/virtualmin.repo
 
 
 %changelog
+* Thu Oct 31 2024 Joe Cooper <joe@virtualmin.com>
+- Fix perms
 * Sun May 15 2022 Joe Cooper <joe@virtualmin.com>
 - Simplify more by removing everything except $basearch
 * Wed Jul 26 2017 Joe Cooper <joe@virtualmin.com>

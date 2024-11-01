@@ -26,7 +26,7 @@ used to sign them.
 %install
 %{__rm} -rf %{buildroot}
 %{__cp} -a %{SOURCE0} .
-# Install gpg public keys
+# Install gpg public key
 %{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 # Install yum repo file
@@ -41,7 +41,7 @@ used to sign them.
 %post
 # Hopefully, only run this if this is our first installation
 if [ "$1" -eq 1 ]; then
-  # Import the Virtualmin 6.0 official gpg key if needed
+  # Import the Virtualmin 7 official gpg key if needed
   rpm -q gpg-pubkey-9d3152d3-895093ac >/dev/null 2>&1 || \
     rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
   # Get the serial/key from the /etc/virtualmin-license file

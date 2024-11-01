@@ -27,7 +27,7 @@ used to sign them.
 %{__rm} -rf %{buildroot}
 %{__cp} -a %{SOURCE0} .
 # Install gpg public key
-%{__install} -D -p -m 0644 %{SOURCE1} \
+%{__install} -D -p -m 0644 %{SOURCE0} \
     %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 # Install yum repo file
 %{__install} -D -p -m 0644 %{SOURCE10} \

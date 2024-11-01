@@ -2,12 +2,11 @@
 
 Summary: Virtualmin release file and package configuration for Virtualmin GPL
 Name: virtualmin-gpl-release
-Version: 7.0
+Version: 7.1
 Release: 1
-License: Copyright 2005-2022 Virtualmin, Inc.
+License: Copyright 2005-2024 Virtualmin, Inc.
 Group: System Environment/Base
-Source0: RPM-GPG-KEY-webmin
-Source1: RPM-GPG-KEY-virtualmin-7
+Source0: RPM-GPG-KEY-virtualmin-7
 Source10: virtualmin.repo-gpl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -15,8 +14,7 @@ BuildArch: noarch
 %description
 Virtualmin release file. This package also contains yum configuration to
 use the virtualmin.com provided rpm packages, as well as the public gpg key
-used to sign them.  It also installs the Webmin public key, so automatic
-upgrades of Webmin from webmin.com will have valid keys.
+used to sign them.
 
 
 %prep
@@ -27,11 +25,9 @@ upgrades of Webmin from webmin.com will have valid keys.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__cp} -a %{SOURCE0} %{SOURCE1} .
-# Install gpg public keys
+%{__cp} -a %{SOURCE0} .
+# Install gpg public key
 %{__install} -D -p -m 0644 %{SOURCE0} \
-    %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
-%{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 # Install yum repo file
 %{__install} -D -p -m 0644 %{SOURCE10} \
@@ -45,10 +41,7 @@ upgrades of Webmin from webmin.com will have valid keys.
 %post
 # Hopefully, only run this if this is our first installation
 if [ "$1" -eq 1 ]; then
-  # Import Jamie's gpg key if needed
-  rpm -q gpg-pubkey-11f63c51-3c7dc11d >/dev/null 2>&1 || \
-    rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
-  # Import the Virtualmin 6.0 official gpg key if needed
+  # Import the Virtualmin 7 official gpg key if needed
   rpm -q gpg-pubkey-9d3152d3-895093ac >/dev/null 2>&1 || \
     rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 fi
@@ -58,15 +51,15 @@ exit 0
 
 
 %files
-%defattr(-, root, root, 0755)
-%pubkey RPM-GPG-KEY-webmin
+%defattr(-, root, root, 0644)
 %pubkey RPM-GPG-KEY-virtualmin-7
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-webmin
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-virtualmin-7
 %attr(0640,root,root) %config(noreplace) %{_sysconfdir}/yum.repos.d/virtualmin.repo
 
 
 %changelog
+* Thu Oct 31 2024 Joe Cooper <joe@virtualmin.com>
+- Remove Webmin key. Virtualmin users have no business there.
 * Thu Oct 31 2024 Joe Cooper <joe@virtualmin.com>
 - Fix perms
 * Sun May 15 2022 Joe Cooper <joe@virtualmin.com>
